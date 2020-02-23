@@ -5,7 +5,18 @@ const password = document.getElementById('password');
 const password2 = document.getElementById('password2');
 
 //Show Input Error Message
-function showError(input, message) {}
+function showError(input, message) {
+  const formControl = input.parentElement;
+  formControl.className = 'form-control error';
+  const small = formControl.querySelector('small');
+  small.innerText = message;
+}
+
+//Show Success Input
+function showSuccess(input) {
+  const formControl = input.parentElement;
+  formControl.className = 'form-control success';
+}
 
 //Event Listeners
 form.addEventListener('submit', function(e) {
@@ -15,5 +26,23 @@ form.addEventListener('submit', function(e) {
     showError(username, 'Username is required');
   } else {
     showSuccess(username);
+  }
+
+  if (email.value === '') {
+    showError(email, 'Email is required');
+  } else {
+    showSuccess(email);
+  }
+
+  if (password.value === '') {
+    showError(password, 'Password is required');
+  } else {
+    showSuccess(password);
+  }
+
+  if (password2.value === '') {
+    showError(password2, 'Please Re-enter Password');
+  } else {
+    showSuccess(password2);
   }
 });
